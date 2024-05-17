@@ -101,6 +101,21 @@ if prompt := st.chat_input(placeholder="Ask me a question!"):
                 })
                 st.session_state.run_id = cb.traced_runs[0].id
             message_placeholder.markdown(full_response.get("answer"))
+            # new code 
+            out = [doc.page_content for doc in full_response.get("context_str")]
+            # st.write("Retrieved context")
+            # for content in out: 
+            #     st.write(content)
+            st.title("Retrieved context for more transparency 😊")
+            for idx, content in enumerate(out, start=1):
+                st.write(f"Context {idx}:")
+                st.markdown("")
+                st.write(content)
+                st.markdown("---")
+                # lines = content.split("\n")
+                # for line_num, line in enumerate(lines, start=1):
+                #     st.write(f"Line {line_num}: {line}")
+                # st.markdown("---")
 
 if st.session_state.get("run_id"):
     run_id = st.session_state.run_id
