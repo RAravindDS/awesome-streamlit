@@ -7,6 +7,7 @@ from rag_chain import get_expression_chain
 from langchain_core.tracers.context import collect_runs
 from langchain_pinecone import PineconeVectorStore
 from langchain_openai import OpenAIEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 # Index Name
 index_name = "superindex"
@@ -18,7 +19,8 @@ os.environ['PINECONE_API_KEY'] = st.secrets["PINECONE"]['PINECONE_API_KEY']
 os.environ['LANGCHAIN_PROJECT'] = st.secrets["LANGSMITH"]["LANGCHAIN_PROJECT"]
 
 client = Client()
-embeddings = OpenAIEmbeddings()
+# embeddings = OpenAIEmbeddings()
+embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=st.secrets["OPENAI"]["GEMINI_API_KEY"])
 
 # loading filenames to show in streamlit app
 with open("mappings.json", 'r') as json_file:
