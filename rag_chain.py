@@ -18,13 +18,13 @@ def get_expression_chain(
         ]
     )
 
-    # llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+    llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
     
-    GEMINI_API_KEY=st.secrets["OPENAI"]["GEMINI_API_KEY"]
-    llm = ChatGoogleGenerativeAI(
-        google_api_key=GEMINI_API_KEY,
-        model="gemini-1.5-pro-latest"
-        )
+    # GEMINI_API_KEY=st.secrets["OPENAI"]["GEMINI_API_KEY"]
+    # llm = ChatGoogleGenerativeAI(
+    #     google_api_key=GEMINI_API_KEY,
+    #     model="gemini-1.5-pro-latest"
+    #     )
     
     def format_docs(docs):
         return "\n\n".join(doc.page_content for doc in docs)
